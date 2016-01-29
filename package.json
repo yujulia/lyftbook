@@ -1,0 +1,30 @@
+{
+  "name": "lyftbook",
+  "version": "1.0.0",
+  "description": "lyft lookbook",
+  "main": "index.html",
+  "dependencies": {
+    "babel": "^6.3.26",
+    "express": "^4.13.4",
+    "gulp": "^3.9.0",
+    "lodash": "^4.0.1",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-s3-uploader": "^2.0.0",
+    "webpack": "^1.12.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yujulia/lyftbook.git"
+  },
+  "author": "Julia Yu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yujulia/lyftbook/issues"
+  },
+  "homepage": "https://github.com/yujulia/lyftbook#readme"
+}
