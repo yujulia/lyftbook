@@ -11,7 +11,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-	pg.connect(process.evn.DATABASE_URL, function(err, client, done) {
+	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		client.query('SELECT * FROM s3urls', function(err, result) {
 			done();
 			if (err) {
