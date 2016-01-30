@@ -5,7 +5,16 @@
 </head>
 
 <body>
-	<div class="entry">
+	<ul>
+	    <% results.forEach(function(r) { %>
+	        <li class="entry">
+	        	<h2><%= r.id %> - <%= r.name %></h2>
+	        	<img src="<%= r.url %>">
+	        </li>
+	    <% }); %>
+	</ul>
+
+<!-- 	<div class="entry">
       <img src="https://s3-us-west-1.amazonaws.com/lyftbook/lyftbook-1.jpg" width="600">
     </div>
     <div class="entry">
@@ -37,6 +46,6 @@
     </div>
     <div class="entry">
       <img src="https://s3-us-west-1.amazonaws.com/lyftbook/lyftbook-12.jpg" width="600">
-    </div>
+    </div> -->
 </body>
 </html>

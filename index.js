@@ -11,7 +11,18 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
-  response.render('pages/index');
+	pg.connect(process.evn.DATABASE_URL, function(err, client, done) {
+		client.query('SELECT * FROM s3urls', function(err, result) {
+			done();
+			if (err) {
+				console.error(err);
+				response.send("Error " + err);
+			} else {
+				response.render('pages/index', {results: result.rows });
+			}
+		});
+	});
+  // response.render('pages/index');
 });
 
 app.listen(app.get('port'), function() {
