@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.entry {
+  margin: 0 auto;
+  width: 600px;
+
+  img {
+    display: block;
+  }
+}

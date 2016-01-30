@@ -1,31 +1,29 @@
 {
   "name": "lyftbook",
   "version": "1.0.0",
-  "description": "lyft lookbook",
-  "main": "index.html",
-  "dependencies": {
-    "express": "^4.13.4",
-    "lodash": "^4.0.1",
-    "node": "0.0.0",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "react-s3-uploader": "^2.0.0"
-  },
-  "devDependencies": {
-    "babel": "^6.3.26",
-    "babel-core": "^6.4.5",
-    "babel-loader": "^6.2.1",
-    "webpack": "^1.12.12"
-  },
+  "description": "A record of numerous Lyft branded apparel worn by the engineers at Lyft.",
+  "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ejs": "2.3.3",
+    "express": "4.13.3"
+  },
+  "engines": {
+    "node": "0.12.7"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yujulia/lyftbook.git"
   },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
   "author": "Julia Yu",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/yujulia/lyftbook/issues"
   },

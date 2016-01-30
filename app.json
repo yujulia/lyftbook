@@ -1,0 +1,8 @@
+{
+  "name": "lyftbook.nu",
+  "description": "A record of numerous Lyft branded apparel worn by the engineers at Lyft.",
+  "repository": "https://github.com/yujulia/lyftbook/",
+  "logo": "",
+  "keywords": ["node", "express", "static"],
+  "image": "heroku/nodejs"
+}
