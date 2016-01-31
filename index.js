@@ -11,14 +11,36 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
+
+	var looksQuery = 'SELECT * FROM looks ORDER BY created DESC';
+
+
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM looks', function(err, result) {
+		client.query(looksQuery, function(err, looks) {
 			done();
 			if (err) {
 				console.error(err);
 				response.send("Error " + err);
 			} else {
-				response.render('pages/index', {results: result.rows });
+
+				console.log(looks);
+
+				looks.forEach(function(look){
+					var peopleQuery = 'SELECT people.id, nickname FROM looks_person, people WHERE looks_person.person=people.id AND looks_person.look=' + look.id;
+
+					client.query(peopleQuery, function(err, re2) {
+						done();
+						if (err) {
+
+						} else {
+							console.log('people return', re2);
+						}
+
+					});
+
+				});
+
+				response.render('pages/index', { looks: looks.rows });
 			}
 		});
 	});
