@@ -76,7 +76,7 @@ var getLooksData2 = function(){
                }
             });
 
-            deferred.resovle(data);
+            deferred.resolve(data);
          }
 
       });
