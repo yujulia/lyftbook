@@ -65,6 +65,11 @@ app.get('/api/peopleinlook/:id', function(request, response){
 
 	var pid = request.params.id;
 
+	if (!pid) {
+		returnError(response, 'Please include an id');
+		return false;
+	}
+
 	var pilQuery = 'SELECT people.id, nickname ';
 		pilQuery += 'FROM looks_person, people ';
 		pilQuery += 'WHERE looks_person.person=people.id ';
