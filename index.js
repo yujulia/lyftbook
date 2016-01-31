@@ -57,7 +57,7 @@ app.listen(app.get('port'), function() {
 app.get('/api/looks', function(request, response){
 	var data;
 	data = {
-		test: "dummy";
+		test: "dummy"
 	}
 	response.send(data);
 });
