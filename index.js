@@ -23,20 +23,19 @@ app.get('/', function(request, response) {
 				response.send("Error " + err);
 			} else {
 
-				console.log(looks);
-
 				looks.forEach(function(look){
 					var peopleQuery = 'SELECT people.id, nickname FROM looks_person, people WHERE looks_person.person=people.id AND looks_person.look=' + look.id;
 
-					client.query(peopleQuery, function(err, re2) {
-						done();
-						if (err) {
+					console.log("PPP", peopleQuery);
+					// client.query(peopleQuery, function(err, re2) {
+					// 	done();
+					// 	if (err) {
 
-						} else {
-							console.log('people return', re2);
-						}
+					// 	} else {
+					// 		console.log('people return', re2);
+					// 	}
 
-					});
+					// });
 
 				});
 
