@@ -21,7 +21,10 @@ app.listen(app.get('port'), function() {
 app.get('/api/looks', api.getLooks);
 
 app.get('/', function(req, res){
-   res.send('ok');
+
+   request('/api/looks', function(err, response){
+      res.send('requested'+err)
+   });
 
   // request('/api/looks', function (error, response, body) {
   //   if (!error && response.statusCode == 200) {
