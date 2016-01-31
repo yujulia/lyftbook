@@ -13,7 +13,7 @@ exports.getLooks = function(request, response) {
          done();
          if (err) {
             console.error(err);
-            response.send("Error " + err);
+            // response.send("Error " + err);
          } else {
             var data = [];
             var lookup = {};
@@ -33,7 +33,8 @@ exports.getLooks = function(request, response) {
                }
             });
 
-            response.send({ looks: data });
+            return data;
+            // response.send({ looks: data });
             // response.render('pages/index', { looks: data });
          }
       });
