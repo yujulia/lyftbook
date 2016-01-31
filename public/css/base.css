@@ -5,9 +5,11 @@ body {
 
 .entry {
   margin: 0 auto;
-  width: 600px;
+  width: 400px;
 
   img {
     display: block;
+    max-width: 600px;
+
   }
 }

@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var pg = require('pg');
+var api = require('./api')(app)
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
@@ -44,8 +45,6 @@ app.get('/', function(request, response) {
 						data.push(lookup[look.id]);
 					}
 				});
-
-				// response.send(data);
 
 				response.render('pages/index', { looks: data });
 			}
