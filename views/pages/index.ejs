@@ -4,20 +4,26 @@
   <% include ../partials/header.ejs %>
 </head>
 <body>
-
+   <header class="head-bar">
+      <h1 class="title">Lyftbook</h1>
+   </header>
    <ul>
-       <% looks.forEach(function(r) { %>
+       <% looks.forEach(function(look) { %>
            <li class="entry">
-            <h2><%= r.title %></h2>
-            <p><%= r.info %></p>
-            <img src="<%= r.image %>" class="cover-image">
-            <% r.people.forEach(function(p) { %>
-            <span><%= p %></span>
-            <% }); %>
+               <div><%= look.date %></div>
+
+               <h2 class="entry-title"><%= look.title %></h2>
+               <p class="entry-info"><%= look.info %></p>
+
+               <img src="<%= look.image %>" class="entry-image">
+
+               <div class="people">
+               <% look.people.forEach(function(person) { %>
+                  <span class="person"><%= person %></span>
+               <% }); %>
+               </div>
            </li>
        <% }); %>
    </ul>
-
-
 </body>
 </html>

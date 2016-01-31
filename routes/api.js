@@ -2,14 +2,14 @@ var pg = require('pg');
 var q = require('q');
 
 // --- test data for local heroku
-// var testData = require('./fixtures/looks.json');
+var fakeData = require('../fixtures/looks.json');
 
 // ---------------------------------------------- do the query to get looks data
 
 var getLooksData = function(){
    var deferred = q.defer();
 
-   var looksQuery = 'SELECT looks.id, looks.image, looks.title, looks.info, people.nickname '
+   var looksQuery = 'SELECT looks.show, looks.id, looks.image, looks.title, looks.info, people.nickname '
       looksQuery += 'FROM looks, looks_person, people ';
       looksQuery += 'WHERE looks.id = looks_person.look AND looks_person.person = people.id '
       looksQuery += 'ORDER BY looks.created DESC';
@@ -31,11 +31,14 @@ var getLooksData = function(){
          if (lookup[look.id]) {
             lookup[look.id].people.push(look.nickname);
          } else {
+            // var formatShowDate = new Date(look.show);
+
             lookup[look.id] = {
                title: look.title,
                info: look.info,
                image: look.image,
-               people: [ look.nickname ]
+               people: [ look.nickname ],
+               date: look.show
             }
             data.push(lookup[look.id]);
          }
@@ -73,8 +76,9 @@ exports.getLooks = function(request, response) {
 // ---------------------------------------------- render looks
 
 exports.renderLooks = function(request, response) {
-   getLooksData().then(function(data){
-      response.render('pages/index', { looks: data });
-   })
+   response.render('pages/index', { looks: fakeData });
+   // getLooksData().then(function(data){
+   //    response.render('pages/index', { looks: data });
+   // })
 }
 
