@@ -70,7 +70,16 @@ app.get('/api/peopleinlook/:id', function(request, response){
 		pilQuery += 'WHERE looks_person.person=people.id ';
 		pilQuery += 'AND looks_person.look=' + pid;
 
-	response.send(pilQuery);
+	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		client.query(pilQuery, function(err, people) {
+			done();
+			if (err) {
+				returnError(response, err);
+			} else {
+				response.send({ people : people.rows });
+			}
+		});
+	});
 });
 
 // ------------------- /api/looks
