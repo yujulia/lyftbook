@@ -68,6 +68,7 @@ app.get('/api/looks', function(request, response){
 				looksData = looks.rows;
 			}
 		});
+	});
 
 	response.send(looksData);
 });
