@@ -56,6 +56,6 @@ exports.renderLooks = function(request, response) {
    var renderLooksCallback = function(data) {
       response.render('pages/index', { looks: data });
    }
-   getLooksData(getLooksCallback);
+   getLooksData(renderLooksCallback);
 }
 
