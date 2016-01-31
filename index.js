@@ -21,16 +21,18 @@ app.listen(app.get('port'), function() {
 app.get('/api/looks', api.getLooks);
 
 app.get('/', function(req, res){
-  request('/api/looks', function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      res.send('TEST ' + body);
+   res.send('ok');
 
-      // var info = JSON.parse(body)
-      // do more stuff
+  // request('/api/looks', function (error, response, body) {
+  //   if (!error && response.statusCode == 200) {
+  //     res.send('TEST ' + body);
 
-      // response.render('pages/index', { looks: data });
-    }
-  })
+  //     // var info = JSON.parse(body)
+  //     // do more stuff
+
+  //     // response.render('pages/index', { looks: data });
+  //   }
+  // })
 });
 
 // app.get('/', api.getLooks);
