@@ -43,6 +43,8 @@ var getLooksData = function(callback){
 }
 
 var getLooksData2 = function(){
+   var deferred = Q.defer();
+
    var looksQuery = 'SELECT looks.id, looks.image, looks.title, looks.info, people.nickname '
       looksQuery += 'FROM looks, looks_person, people ';
       looksQuery += 'WHERE looks.id = looks_person.look AND looks_person.person = people.id '
@@ -58,7 +60,7 @@ var getLooksData2 = function(){
 
          if (err) {
             console.error(err);
-            data[{ error: err }];
+            deferred.reject(err);
          } else {
             looks.rows.forEach(function(look) {
                if (lookup[look.id]) {
@@ -73,11 +75,13 @@ var getLooksData2 = function(){
                   data.push(lookup[look.id]);
                }
             });
+
+            deferred.resovle(data);
          }
 
-         return data;
       });
    });
+   return deferred.promise;
 }
 
 // ---------------------------------------------- return looks data
