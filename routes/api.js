@@ -36,6 +36,9 @@ var getLooksData = function(){
          } else {
             var lookDate = new Date(look.show);
 
+            console.log(look);
+            console.log(lookDate);
+
             lookup[look.id] = {
                title: look.title,
                info: look.info,
