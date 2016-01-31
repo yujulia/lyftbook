@@ -19,6 +19,7 @@ app.listen(app.get('port'), function() {
 
 app.get('/', function(request, response){
    var data = api.getLooks(request, response);
+   console.log('got data', data);
    response.send(data)
    // response.render('pages/index', data);
 });
