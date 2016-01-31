@@ -1,3 +1,6 @@
+
+var pg = require('pg');
+
 exports.getLooks = function(request, response) {
 
    var looksQuery = 'SELECT looks.id, looks.image, looks.title, looks.info, people.nickname '
