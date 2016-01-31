@@ -66,14 +66,13 @@ ul, li {
    width: 300px;
    float: right;
    padding: 3rem;
-   margin-top: 6rem;
-
+   margin-top: 7rem;
 }
 
 .info {
    font-size: 0.8rem;
-   padding-bottom: 1rem;
-   border-bottom: solid 1px #000;
+   padding-top: 1rem;
+   border-top: solid 1px #000;
    color: #666;
 }
 
