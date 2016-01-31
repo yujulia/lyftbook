@@ -1,5 +1,5 @@
 
-var api = require('./routes/api');
+var api = require('api');
 
 exports.allLooks = function(request, response) {
 
