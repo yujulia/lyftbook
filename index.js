@@ -26,9 +26,9 @@ app.get('/', function(request, response) {
 			} else {
 				var data = looks.rows;
 
-				response.send(data);
+				// response.send(data);
 
-				// response.render('pages/index', { looks: looks.rows });
+				response.render('pages/index', { looks: data });
 			}
 		});
 	});
