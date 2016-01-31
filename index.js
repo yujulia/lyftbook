@@ -55,9 +55,19 @@ app.listen(app.get('port'), function() {
  */
 
 app.get('/api/looks', function(request, response){
-	var data;
-	data = {
-		test: "dummy"
-	}
-	response.send(data);
+	var looksData;
+	var looksQuery = 'SELECT * FROM looks ORDER BY created DESC';
+
+	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+		client.query(looksQuery, function(err, looks) {
+			done();
+			if (err) {
+				console.error(err);
+				looksData = { error: err };
+			} else {
+				looksData = looks.rows;
+			}
+		});
+
+	response.send(looksData);
 });
