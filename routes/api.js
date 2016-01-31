@@ -42,6 +42,7 @@ exports.getLooks = function(request, response) {
    var callback = function(data) {
       response.send(data);
    }
+   getLooksData(callback);
 
    // var looksQuery = 'SELECT looks.id, looks.image, looks.title, looks.info, people.nickname '
    //    looksQuery += 'FROM looks, looks_person, people ';
