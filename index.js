@@ -18,8 +18,9 @@ app.listen(app.get('port'), function() {
 });
 
 app.get('/', function(request, response){
-   var data = api.getLooks;
-   response.render('pages/index', { looks: data });
+   var data = api.getLooks();
+   // response.send(data)
+   // response.render('pages/index', { looks: data });
 });
 
 // app.get('/', api.getLooks);
