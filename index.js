@@ -14,7 +14,6 @@ app.get('/', function(request, response) {
 
 	var looksQuery = 'SELECT * FROM looks ORDER BY created DESC';
 
-
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		client.query(looksQuery, function(err, looks) {
 			done();
@@ -23,12 +22,10 @@ app.get('/', function(request, response) {
 				response.send("Error " + err);
 			} else {
 
-				// for (var i=0; i<looks.rowslength; i++) {
-				// 	console.log(looks)
-				// }
-
 				looks.rows.forEach(function(look){
-					var peopleQuery = 'SELECT people.id, nickname FROM looks_person, people WHERE looks_person.person=people.id AND looks_person.look=' + look.id;
+					var peopleQuery = 'SELECT people.id, nickname';
+					peopleQuery += 'FROM looks_person, people ';
+					peopleQuery += 'WHERE looks_person.person=people.id AND looks_person.look=' + look.id;
 
 					console.log("PPP", peopleQuery);
 					// client.query(peopleQuery, function(err, re2) {
@@ -53,3 +50,14 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
+/**
+ * ================== API
+ */
+
+app.get('/api/looks', function(request, response){
+	var data;
+	data = {
+		test: "dummy";
+	}
+	response.send(data);
+});
