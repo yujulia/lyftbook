@@ -4,17 +4,20 @@
   <% include ../partials/header.ejs %>
 </head>
 <body>
+
 	<ul>
 	    <% looks.forEach(function(r) { %>
 	        <li class="entry">
 	        	<h2><%= r.title %></h2>
 	        	<p><%= r.info %></p>
-	        	<img src="<%= r.image %>">
+	        	<img src="<%= r.image %>" class="cover-image">
 	        	<% r.people.forEach(function(p) { %>
 	        	<span><%= p %></span>
 	        	<% }); %>
 	        </li>
 	    <% }); %>
 	</ul>
+
+
 </body>
 </html>

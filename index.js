@@ -45,10 +45,12 @@ app.get('/', function(request, response) {
 					}
 				});
 
-				response.render('pages/index', { looks: data });
+				response.send(data);
+				// response.render('pages/index', { looks: data });
 			}
 		});
 	});
+	// response.render('pages/index', { looks: data });
 });
 
 

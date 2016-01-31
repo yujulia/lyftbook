@@ -13,10 +13,10 @@ ul, li {
 .entry {
   margin: 0 auto;
   width: 400px;
+}
 
-  img {
-    display: block;
-    max-width: 600px;
-    width: 100%;
-  }
+.cover-image {
+  display: block;
+  max-width: 600px;
+  width: 100%;
 }
