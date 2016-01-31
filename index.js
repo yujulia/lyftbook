@@ -70,7 +70,7 @@ app.get('/api/peopleinlook/:id', function(request, response){
 		pilQuery += 'WHERE looks_person.person=people.id ';
 		pilQuery += 'AND looks_person.look=' + pid;
 
-	response.send(peopleinlookQuery);
+	response.send(pilQuery);
 });
 
 // ------------------- /api/looks
