@@ -3,6 +3,13 @@ body {
   padding: 0;
 }
 
+ul, li {
+  list-decoration: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
 .entry {
   margin: 0 auto;
   width: 400px;
@@ -10,6 +17,6 @@ body {
   img {
     display: block;
     max-width: 600px;
-
+    width: 100%;
   }
 }
