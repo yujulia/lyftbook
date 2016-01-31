@@ -20,7 +20,7 @@ app.listen(app.get('port'), function() {
 app.get('/', function(request, response){
    var data = api.getLooks(request, response);
    // response.send(data)
-   // response.render('pages/index', { looks: data });
+   response.render('pages/index', { looks: data });
 });
 
 // app.get('/', api.getLooks);
