@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var pg = require('pg');
 var api = require('./routes/api');
+var views = require('./routes/views');
 
 // --- test data for local heroku
 // var testData = require('./fixtures/looks.json');
@@ -17,7 +18,9 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-app.get('/', api.getLooks);
+app.get('/', views.allLooks);
+
+// app.get('/', api.getLooks);
 
 // app.get('/', function(request, response) {
 
