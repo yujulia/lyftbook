@@ -10,7 +10,12 @@
    <ul>
        <% looks.forEach(function(look) { %>
            <li class="entry">
-               <div><%= look.date %></div>
+               <div>
+                  <%= look.date.month %>
+                  <%= look.date.day %>
+                  <%= look.date.year %>
+
+               </div>
 
                <h2 class="entry-title"><%= look.title %></h2>
                <p class="entry-info"><%= look.info %></p>
