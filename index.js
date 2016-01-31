@@ -22,7 +22,7 @@ app.get('/api/looks', api.getLooks);
 
 app.get('/', function(req, res){
 
-   request('/api/looks', function(err, response){
+   request('http://lyftbook.nu/api/looks', function(err, response){
       res.send('requested'+err)
    });
 
