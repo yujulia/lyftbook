@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var pg = require('pg');
-var routes =  require('./routes')(app);
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
@@ -25,65 +24,33 @@ app.get('/', function(request, response) {
 				console.error(err);
 				response.send("Error " + err);
 			} else {
+				var data = looks.rows;
 
-				looks.rows.forEach(function(look){
-					var peopleQuery = 'SELECT people.id, nickname';
-					peopleQuery += 'FROM looks_person, people ';
-					peopleQuery += 'WHERE looks_person.person=people.id AND looks_person.look=' + look.id;
+				data.forEach(function(look){
+					var pilQuery = 'SELECT people.id, nickname ';
+						pilQuery += 'FROM looks_person, people ';
+						pilQuery += 'WHERE looks_person.person=people.id ';
+						pilQuery += 'AND looks_person.look=' + look.id;
 
-
+					client.query(pilQuery, function(error, person) {
+						done();
+						if (err) {
+							console.error(err);
+						} else {
+							if (!look.people) {
+								look.people = [];
+							}
+							look.people.push(person.nickname);
+						}
+					});
 				});
 
-				response.render('pages/index', { looks: looks.rows });
+				response.send(data);
+
+				// response.render('pages/index', { looks: looks.rows });
 			}
 		});
 	});
 });
 
 
-
-/**
- * ================== API
- */
-
-
-// ------------------- /api/peopleinlook/:id
-
-app.get('/api/peopleinlook/:id', function(request, response){
-
-	var pilQuery = 'SELECT people.id, nickname ';
-		pilQuery += 'FROM looks_person, people ';
-		pilQuery += 'WHERE looks_person.person=people.id ';
-		pilQuery += 'AND looks_person.look=' + request.params.id;
-
-	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query(pilQuery, function(err, people) {
-			done();
-			if (err) {
-				response.send({ error: err });
-			} else {
-				response.send({ people : people.rows });
-			}
-		});
-	});
-});
-
-// ------------------- /api/looks
-
-app.get('/api/looks', function(request, response){
-
-	var looksQuery = 'SELECT * FROM looks ORDER BY created DESC';
-
-	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query(looksQuery, function(err, looks) {
-			done();
-			if (err) {
-				returnError(response, err);
-			} else {
-				// get people
-
-				response.send({ looks : looks.rows });
-			}
-		});
-	});
-});
