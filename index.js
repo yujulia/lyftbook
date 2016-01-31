@@ -1,14 +1,18 @@
 var express = require('express');
 var app = express();
 var pg = require('pg');
+var routes =  require('./routes')(app);
 
 app.set('port', (process.env.PORT || 5000));
-
 app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 
 app.get('/', function(request, response) {
 
@@ -27,16 +31,6 @@ app.get('/', function(request, response) {
 					peopleQuery += 'FROM looks_person, people ';
 					peopleQuery += 'WHERE looks_person.person=people.id AND looks_person.look=' + look.id;
 
-					console.log("PPP", peopleQuery);
-					// client.query(peopleQuery, function(err, re2) {
-					// 	done();
-					// 	if (err) {
-
-					// 	} else {
-					// 		console.log('people return', re2);
-					// 	}
-
-					// });
 
 				});
 
@@ -46,9 +40,7 @@ app.get('/', function(request, response) {
 	});
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
+
 
 /**
  * ================== API
@@ -59,17 +51,10 @@ app.listen(app.get('port'), function() {
 
 app.get('/api/peopleinlook/:id', function(request, response){
 
-	var pid = request.params.id;
-
-	if (!pid) {
-		resonse.send(400, 'please pass in a look id');
-		return false;
-	}
-
 	var pilQuery = 'SELECT people.id, nickname ';
 		pilQuery += 'FROM looks_person, people ';
 		pilQuery += 'WHERE looks_person.person=people.id ';
-		pilQuery += 'AND looks_person.look=' + pid;
+		pilQuery += 'AND looks_person.look=' + request.params.id;
 
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		client.query(pilQuery, function(err, people) {
