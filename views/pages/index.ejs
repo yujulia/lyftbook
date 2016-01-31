@@ -10,6 +10,9 @@
 	        	<h2><%= r.title %></h2>
 	        	<p><%= r.info %></p>
 	        	<img src="<%= r.image %>">
+	        	<% r.people.forEach(function(p) { %>
+	        	<span><%= p %></span>
+	        	<% }); %>
 	        </li>
 	    <% }); %>
 	</ul>
