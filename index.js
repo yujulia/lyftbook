@@ -65,7 +65,7 @@ app.get('/api/peopleinlook/:id', function(request, response){
 
 	var pid = request.params.id;
 
-	var pilQuery = 'SELECT people.id, nickname';
+	var pilQuery = 'SELECT people.id, nickname ';
 		pilQuery += 'FROM looks_person, people ';
 		pilQuery += 'WHERE looks_person.person=people.id ';
 		pilQuery += 'AND looks_person.look=' + pid;
