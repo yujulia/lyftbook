@@ -63,9 +63,11 @@ app.get('/api/looks', function(request, response){
 			done();
 			if (err) {
 				console.error(err);
+
 				looksData = { error: err };
 			} else {
 				looksData = looks.rows;
+				console.log('returning ', looksData);
 			}
 		});
 	});
