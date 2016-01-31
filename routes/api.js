@@ -13,12 +13,10 @@ exports.getLooks = function(request, response) {
          done();
          if (err) {
             console.error(err);
-            // response.send("Error " + err);
+            response.send("Error " + err);
          } else {
             var data = [];
             var lookup = {};
-
-            // transform this data;
             looks.rows.forEach(function(look) {
                if (lookup[look.id]) {
                   lookup[look.id].people.push(look.nickname);
@@ -33,8 +31,7 @@ exports.getLooks = function(request, response) {
                }
             });
 
-            return data;
-            // response.send({ looks: data });
+            response.send({ looks: data });
             // response.render('pages/index', { looks: data });
          }
       });

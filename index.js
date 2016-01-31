@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var pg = require('pg');
 var api = require('./routes/api');
+var request = require('request');
 
 // --- test data for local heroku
 // var testData = require('./fixtures/looks.json');
@@ -17,11 +18,19 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-app.get('/', function(request, response){
-   var data = api.getLooks(request, response);
-   console.log('got data', data);
-   response.send(data)
-   // response.render('pages/index', data);
+app.get('/api/looks', api.getLooks);
+
+app.get('/', function(req, res){
+  request('/api/looks', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      res.send('TEST ' + body);
+
+      // var info = JSON.parse(body)
+      // do more stuff
+
+      // response.render('pages/index', { looks: data });
+    }
+  })
 });
 
 // app.get('/', api.getLooks);
