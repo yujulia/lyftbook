@@ -1,11 +1,12 @@
 var pg = require('pg');
+var q = require('q');
 
 // --- test data for local heroku
 // var testData = require('./fixtures/looks.json');
 
 
 var getLooksData = function(){
-   var deferred = Q.defer();
+   var deferred = q.defer();
 
    var looksQuery = 'SELECT looks.id, looks.image, looks.title, looks.info, people.nickname '
       looksQuery += 'FROM looks, looks_person, people ';
