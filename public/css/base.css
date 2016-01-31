@@ -144,3 +144,16 @@ ul, li {
    padding: 0.2rem 0.4rem;
    font-size: 0.7rem;
 }
+
+@media (max-width: 940px) {
+   .content, .looks, .entry {
+      width: 100%;
+   }
+
+   .looks, .sidebar {
+      float: none;
+      width: 100%;
+      padding: 0 1rem;
+   }
+
+}
