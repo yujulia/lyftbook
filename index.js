@@ -15,7 +15,10 @@ app.listen(app.get('port'), function() {
 
 app.get('/', function(request, response) {
 
-	var looksQuery = 'select * from looks, looks_person, people where looks.id=looks_person.id and looks_person.person=people.id ORDER BY looks.created DESC';
+	var looksQuery = 'SELECT looks.id, looks.image, looks.title, looks.info, people.nickname '
+		looksQuery += 'FROM looks, looks_person, people ';
+		looksQuery += 'WHERE looks.id = looks_person.look AND looks_person.person = people.id '
+		looksQuery += 'ORDER BY looks.created DESC';
 
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 		client.query(looksQuery, function(err, looks) {
@@ -26,9 +29,9 @@ app.get('/', function(request, response) {
 			} else {
 				var data = looks.rows;
 
-				// response.send(data);
+				response.send(data);
 
-				response.render('pages/index', { looks: data });
+				// response.render('pages/index', { looks: data });
 			}
 		});
 	});
