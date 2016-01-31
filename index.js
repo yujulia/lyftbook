@@ -27,7 +27,22 @@ app.get('/', function(request, response) {
 				console.error(err);
 				response.send("Error " + err);
 			} else {
-				var data = looks.rows;
+				var data = [];
+				var lookup = {};
+
+				// transform this data;
+				looks.rows.forEach(function(look) {
+					if (lookup[look.id]) {
+						lookup[look.id].people.push(look.nickname);
+					} else {
+						lookup[look.id] = {
+							title: look.title,
+							info: look.info,
+							image: look.image,
+							people: [ look.nickname ]
+						}
+					}
+				});
 
 				response.send(data);
 
