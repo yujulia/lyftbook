@@ -23,7 +23,11 @@ app.get('/', function(request, response) {
 				response.send("Error " + err);
 			} else {
 
-				looks.forEach(function(look){
+				// for (var i=0; i<looks.rowslength; i++) {
+				// 	console.log(looks)
+				// }
+
+				looks.rows.forEach(function(look){
 					var peopleQuery = 'SELECT people.id, nickname FROM looks_person, people WHERE looks_person.person=people.id AND looks_person.look=' + look.id;
 
 					console.log("PPP", peopleQuery);
