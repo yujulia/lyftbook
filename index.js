@@ -19,12 +19,7 @@ app.listen(app.get('port'), function() {
 
 app.get('/api/looks', api.getLooks);
 
-app.get('/', function(request, response){
-
-   var something = api.getLooks(request, response);
-   response.send('this is app' + something);
-
-});
+app.get('/', api.getLooks);
 
 // app.get('/', api.getLooks);
 
