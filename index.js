@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var pg = require('pg');
 var api = require('./routes/api');
-var request = require('request');
 
 // --- test data for local heroku
 // var testData = require('./fixtures/looks.json');
@@ -20,22 +19,11 @@ app.listen(app.get('port'), function() {
 
 app.get('/api/looks', api.getLooks);
 
-app.get('/', function(req, res){
+app.get('/', function(request, response){
 
-   request('http://lyftbook.nu/api/looks', function(err, response){
-      res.send('requested'+err)
-   });
+   var something = api.getLooks(request, response);
+   response.send('this is app' + something);
 
-  // request('/api/looks', function (error, response, body) {
-  //   if (!error && response.statusCode == 200) {
-  //     res.send('TEST ' + body);
-
-  //     // var info = JSON.parse(body)
-  //     // do more stuff
-
-  //     // response.render('pages/index', { looks: data });
-  //   }
-  // })
 });
 
 // app.get('/', api.getLooks);

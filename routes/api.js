@@ -31,7 +31,7 @@ exports.getLooks = function(request, response) {
                }
             });
 
-            response.send({ looks: data });
+            return response.send({ looks: data });
             // response.render('pages/index', { looks: data });
          }
       });
