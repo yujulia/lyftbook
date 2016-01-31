@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var pg = require('pg');
 var api = require('./routes/api');
-var views = require('./routes/views');
+var views = require('./routes/views')(api);
 
 // --- test data for local heroku
 // var testData = require('./fixtures/looks.json');
