@@ -86,9 +86,9 @@ exports.getLooks = function(request, response) {
 // ---------------------------------------------- render looks
 
 exports.renderLooks = function(request, response) {
-   // response.render('pages/index', { looks: fakeData });
-   getLooksData().then(function(data){
-      response.render('pages/index', { looks: data });
-   })
+   response.render('pages/index', { looks: fakeData });
+   // getLooksData().then(function(data){
+   //    response.render('pages/index', { looks: data });
+   // })
 }
 

@@ -5,30 +5,38 @@
 </head>
 <body>
    <header class="head-bar">
-      <h1 class="title">Lyftbook</h1>
+      <div class="content"><h1 class="title">Lyftbook</h1></div>
    </header>
-   <ul>
-       <% looks.forEach(function(look) { %>
-           <li class="entry">
-               <div>
-                  <%= look.date.month %>
-                  <%= look.date.day %>
-                  <%= look.date.year %>
+   <div class="content">
+      <section class="looks clearfix">
+         <ul>
+             <% looks.forEach(function(look) { %>
+                 <li class="entry">
+                     <header class="entry-header clearfix">
+                        <div class="entry-date">
+                           <div class="entry-month"><%= look.date.month %></div>
+                           <div class="entry-day"><%= look.date.day %></div>
+                           <div class="entry-year"><%= look.date.year %></div>
+                        </div>
+                        <h2 class="entry-title"><%= look.title %></h2>
+                        <p class="entry-info"><%= look.info %></p>
+                        <div class="people">
+                        <% look.people.forEach(function(person) { %>
+                           <span class="person"><%= person %></span>
+                        <% }); %>
+                        </div>
+                     </header>
 
-               </div>
-
-               <h2 class="entry-title"><%= look.title %></h2>
-               <p class="entry-info"><%= look.info %></p>
-
-               <img src="<%= look.image %>" class="entry-image">
-
-               <div class="people">
-               <% look.people.forEach(function(person) { %>
-                  <span class="person"><%= person %></span>
-               <% }); %>
-               </div>
-           </li>
-       <% }); %>
-   </ul>
+                     <img src="<%= look.image %>" class="entry-image">
+                 </li>
+             <% }); %>
+         </ul>
+      </section>
+      <aside class="sidebar">
+         <div class="info">
+            <p>Ping me on slack @jyu if you want me to take a picture of your Lyft related duds.</p>
+         </div>
+      </aside>
+   </div>
 </body>
 </html>
