@@ -4,6 +4,7 @@ var q = require('q');
 // --- test data for local heroku
 // var testData = require('./fixtures/looks.json');
 
+// ---------------------------------------------- do the query to get looks data
 
 var getLooksData = function(){
    var deferred = q.defer();
@@ -13,37 +14,51 @@ var getLooksData = function(){
       looksQuery += 'WHERE looks.id = looks_person.look AND looks_person.person = people.id '
       looksQuery += 'ORDER BY looks.created DESC';
 
-   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-      client.query(looksQuery, function(err, looks) {
+   var clientQueryDone = null;
 
-         done();
+   // ------------------------------------- client query is finished
 
-         var data = [];
-         var lookup = {};
+   var queryDone = function(err, looks) {
 
-         if (err) {
-            console.error(err);
-            deferred.reject(err);
+      clientQueryDone();
+
+      var data = [];
+      var lookup = {};
+
+      // ------------------------------------- fix the returned data
+      //
+      var updateData = function(look) {
+         if (lookup[look.id]) {
+            lookup[look.id].people.push(look.nickname);
          } else {
-            looks.rows.forEach(function(look) {
-               if (lookup[look.id]) {
-                  lookup[look.id].people.push(look.nickname);
-               } else {
-                  lookup[look.id] = {
-                     title: look.title,
-                     info: look.info,
-                     image: look.image,
-                     people: [ look.nickname ]
-                  }
-                  data.push(lookup[look.id]);
-               }
-            });
-
-            deferred.resolve(data);
+            lookup[look.id] = {
+               title: look.title,
+               info: look.info,
+               image: look.image,
+               people: [ look.nickname ]
+            }
+            data.push(lookup[look.id]);
          }
+      };
 
-      });
-   });
+      if (err) {
+         console.error(err);
+         deferred.reject(err);
+      } else {
+         looks.rows.forEach(updateData);
+         deferred.resolve(data);
+      }
+   };
+
+   // ------------------------------------- connect to posgres
+
+   var pgConnected = function(err, client, done) {
+      clientQueryDone = done;
+      client.query(looksQuery, queryDone);
+   };
+
+   pg.connect(process.env.DATABASE_URL, pgConnected);
+
    return deferred.promise;
 }
 
