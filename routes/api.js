@@ -15,7 +15,7 @@ var getLooksData = function(){
    var looksQuery = 'SELECT looks.show, looks.id, looks.image, looks.title, looks.info, people.nickname '
       looksQuery += 'FROM looks, looks_person, people ';
       looksQuery += 'WHERE looks.id = looks_person.look AND looks_person.person = people.id '
-      looksQuery += 'ORDER BY looks.created DESC';
+      looksQuery += 'ORDER BY looks.order ASC, looks.created DESC';
 
    var clientQueryDone = null;
 
