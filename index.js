@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
 	pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-		client.query('SELECT * FROM s3urls', function(err, result) {
+		client.query('SELECT * FROM looks', function(err, result) {
 			done();
 			if (err) {
 				console.error(err);

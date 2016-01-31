@@ -7,8 +7,9 @@
 	<ul>
 	    <% results.forEach(function(r) { %>
 	        <li class="entry">
-	        	<h2><%= r.id %> - <%= r.name %></h2>
-	        	<img src="<%= r.url %>">
+	        	<h2><%= r.title %></h2>
+	        	<p><%= r.info %></p>
+	        	<img src="<%= r.image %>">
 	        </li>
 	    <% }); %>
 	</ul>
