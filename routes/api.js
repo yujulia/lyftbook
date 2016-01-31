@@ -1,5 +1,8 @@
 var pg = require('pg');
 var q = require('q');
+var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 
 // --- test data for local heroku
 var fakeData = require('../fixtures/looks.json');
@@ -31,14 +34,14 @@ var getLooksData = function(){
          if (lookup[look.id]) {
             lookup[look.id].people.push(look.nickname);
          } else {
-            // var formatShowDate = new Date(look.show);
+            var lookDate = new Date(look.show);
 
             lookup[look.id] = {
                title: look.title,
                info: look.info,
                image: look.image,
                people: [ look.nickname ],
-               date: look.show
+               date: lookDate.getYear() + ' ' + monthNames(lookDate.getMonth()) + ' ' + lookDate.getDay()
             }
             data.push(lookup[look.id]);
          }
@@ -76,9 +79,9 @@ exports.getLooks = function(request, response) {
 // ---------------------------------------------- render looks
 
 exports.renderLooks = function(request, response) {
-   response.render('pages/index', { looks: fakeData });
-   // getLooksData().then(function(data){
-   //    response.render('pages/index', { looks: data });
-   // })
+   // response.render('pages/index', { looks: fakeData });
+   getLooksData().then(function(data){
+      response.render('pages/index', { looks: data });
+   })
 }
 
