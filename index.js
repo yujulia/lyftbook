@@ -54,10 +54,6 @@ app.listen(app.get('port'), function() {
  * ================== API
  */
 
-var returnError = function(re, err){
-	console.error(err);
-	re.send({ error: err });
-};
 
 // ------------------- /api/peopleinlook/:id
 
@@ -66,7 +62,7 @@ app.get('/api/peopleinlook/:id', function(request, response){
 	var pid = request.params.id;
 
 	if (!pid) {
-		returnError(response, 'Please include an id');
+		resonse.send(400, 'please pass in a look id');
 		return false;
 	}
 
@@ -79,7 +75,7 @@ app.get('/api/peopleinlook/:id', function(request, response){
 		client.query(pilQuery, function(err, people) {
 			done();
 			if (err) {
-				returnError(response, err);
+				response.send({ error: err });
 			} else {
 				response.send({ people : people.rows });
 			}
