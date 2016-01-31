@@ -41,6 +41,7 @@ app.get('/', function(request, response) {
 							image: look.image,
 							people: [ look.nickname ]
 						}
+						data.push(lookup[look.id]);
 					}
 				});
 
