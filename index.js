@@ -65,12 +65,14 @@ app.get('/api/looks', function(request, response){
 				console.error(err);
 
 				looksData = { error: err };
+				response.send(looksData);
 			} else {
 				looksData = { looks : looks.rows } ;
 				console.log('returning ', looksData);
+				response.send(looksData);
 			}
 		});
 	});
 
-	response.send(looksData);
+
 });
