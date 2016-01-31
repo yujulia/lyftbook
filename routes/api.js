@@ -44,7 +44,11 @@ var getLooksData = function(){
                info: look.info,
                image: look.image,
                people: [ look.nickname ],
-               date: lookDate.getFullYear() + ' ' + monthNames[lookDate.getMonth()] + ' ' + lookDate.getDate()
+               date: {
+                  year: lookDate.getFullYear(),
+                  monthName: monthNames[lookDate.getMonth()],
+                  date: lookDate.getDate()
+               }
             }
             data.push(lookup[look.id]);
          }
