@@ -1,6 +1,8 @@
 var express = require('express');
 var flash = require('connect-flash');
 var passport = require('passport');
+var cookieParser = require('cookie-parser')
+var bodyPArser = require('body-parser')
 var localStrategy = require('passport-local').Strategy;
 
 var api = require('./routes/api');
@@ -13,8 +15,8 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.use(express.cookieParser());
-app.use(express.bodyParser());
+app.use(cookieParser());
+app.use(bodyParser());
 app.use(flash());
 app.use(express.session({ secret: 'so secret'}));
 app.use(passport.initialize());
