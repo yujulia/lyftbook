@@ -9,12 +9,6 @@ var api = require('./routes/api');
 
 var app = express();
 
-app.configure(function() {
-   app.use(express.session());
-   app.use(passport.initialize());
-   app.use(passport.session());
-});
-
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
