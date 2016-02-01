@@ -15,14 +15,6 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.use(cookieParser());
-app.use(bodyParser());
-app.use(flash());
-app.use(express.session({ secret: 'so secret'}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(app.router);
-
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
