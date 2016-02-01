@@ -1,8 +1,5 @@
 var express = require('express');
-var flash = require('connect-flash');
 var passport = require('passport');
-var cookieParser = require('cookie-parser')
-var bodyParser = require('body-parser')
 var localStrategy = require('passport-local').Strategy;
 
 var api = require('./routes/api');
