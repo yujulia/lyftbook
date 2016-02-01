@@ -4,9 +4,8 @@
   <% include ../partials/header.ejs %>
 </head>
 <body>
-   <header class="head-bar">
-      <div class="content"><h1 class="title">Lyftbook</h1></div>
-   </header>
+   <% include ../partials/nav.ejs %>
+
    <div class="content">
       <section class="looks clearfix">
          <ul>
@@ -32,11 +31,8 @@
              <% }); %>
          </ul>
       </section>
-      <aside class="sidebar">
-         <div class="info">
-            <p>Ping me on slack @jyu if you want me to take a picture of your Lyft swag.</p>
-         </div>
-      </aside>
+
+      <% include ../partials/aisde.ejs %>
    </div>
 </body>
 </html>

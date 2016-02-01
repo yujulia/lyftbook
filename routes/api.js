@@ -77,7 +77,7 @@ var getLooksData = function(){
 exports.getLooks = function(request, response) {
    getLooksData().then(function(data){
       response.send(data);
-   })
+   });
 };
 
 // ---------------------------------------------- render looks
@@ -86,6 +86,11 @@ exports.renderLooks = function(request, response) {
    // response.render('pages/index', { looks: fakeData });
    getLooksData().then(function(data){
       response.render('pages/index', { looks: data });
-   })
+   });
 }
 
+// ---------------------------------------------- render login
+
+exports.renderLogin = function(request, response) {
+   response.render('pages/login');
+}

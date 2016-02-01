@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+<body>
+   <% include ../partials/nav.ejs %>
+
+   <div class="content">
+      <section class="looks clearfix">
+         <form method="post" action="/login">
+            <fieldset>
+               <lable>Username</lable>
+               <input type="text" name="username" />
+            </fieldset>
+            <fieldset>
+               <lable>Password</lable>
+               <input type="password" name="password" />
+            </fieldset>
+         </form>
+      </section>
+      <% include ../partials/aisde.ejs %>
+   </div>
+</body>
+</html>
