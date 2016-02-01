@@ -1,5 +1,5 @@
 var express = require('express');
-var flash = require('flash');
+var flash = require('connect-flash');
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
 
