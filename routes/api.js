@@ -92,9 +92,10 @@ var getData = function(data_query) {
 // ---------------------------------------------- return looks data
 
 exports.getLook = function(request, response) {
-   getData(getDetailQuery(request.params.id)).then(function(data){
-      response.send(data);
-   });
+//    getData(getDetailQuery(request.params.id)).then(function(data){
+//       response.send(data);
+//    });
+   response.send((getDetailQuery(request.params.id));
 };
 
 // ---------------------------------------------- return looks data
