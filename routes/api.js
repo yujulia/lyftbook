@@ -20,7 +20,7 @@ var getLooksQuery = function() {
    return looksQuery;
 };
 
-var getDetailQuery = function(id) {
+var getLookQuery = function(id) {
    var detailQuery = 'SELECT looks.show, looks.id, looks.image, looks.title, looks.info, people.nickname '
       detailQuery += 'FROM looks, looks_person, people ';
       detailQuery += 'WHERE looks.id='+id+' ';
@@ -89,13 +89,12 @@ var getData = function(data_query) {
    return deferred.promise;
 };
 
-// ---------------------------------------------- return looks data
+// ---------------------------------------------- return detail data
 
 exports.getLook = function(request, response) {
-//    getData(getDetailQuery(request.params.id)).then(function(data){
-//       response.send(data);
-//    });
-   response.send(getDetailQuery(request.params.id));
+   getData(getLookQuery(request.params.id)).then(function(data){
+      response.send(data);
+   });
 };
 
 // ---------------------------------------------- return looks data
@@ -115,14 +114,17 @@ exports.renderLooks = function(request, response) {
    });
 };
 
+// ----------------------------------------------  render detail page
+
+exports.renderLook = function(request, response) {
+   getData(getLookQuery(request.params.id)).then(function(data){
+      response.render('pages/index', { looks: data });
+   });
+};
+
 // ---------------------------------------------- render login
 
 exports.renderLogin = function(request, response) {
    response.render('pages/login');
 };
 
-// ---------------------------------------------- render detail page
-
-exports.renderLogin = function(request, response) {
-   response.render('pages/detail');
-};
