@@ -95,7 +95,7 @@ exports.getLook = function(request, response) {
 //    getData(getDetailQuery(request.params.id)).then(function(data){
 //       response.send(data);
 //    });
-   response.send((getDetailQuery(request.params.id));
+   response.send(getDetailQuery(request.params.id));
 };
 
 // ---------------------------------------------- return looks data
