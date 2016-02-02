@@ -27,7 +27,7 @@ var getDetailQuery = function(id) {
       detailQuery += 'looks.id = looks_person.look AND looks_person.person = people.id ';
       detailQuery += 'ORDER BY looks.show_order ASC';
 
-   return lookQuery;
+   return detailQuery;
 };
 
 // ---------------------------------------------- do the query to get looks data
