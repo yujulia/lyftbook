@@ -11,17 +11,29 @@ var fakeData = require('../fixtures/looks.json');
 //
 // move api endpoints to one module and routes to another, make shared functions into its own module
 
-
-// ---------------------------------------------- do the query to get looks data
-
-var getLooksData = function(){
-   var deferred = q.defer();
-
+var getLooksQuery = function() {
    var looksQuery = 'SELECT looks.show, looks.id, looks.image, looks.title, looks.info, people.nickname '
       looksQuery += 'FROM looks, looks_person, people ';
       looksQuery += 'WHERE looks.id = looks_person.look AND looks_person.person = people.id '
       looksQuery += 'ORDER BY looks.show_order ASC';
 
+   return looksQuery;
+};
+
+var getDetailQuery = function(id) {
+   var detailQuery = 'SELECT looks.show, looks.id, looks.image, looks.title, looks.info, people.nickname '
+      detailQuery += 'FROM looks, looks_person, people ';
+      detailQuery += 'WHERE looks.id='+id+' ';
+      detailQuery += 'looks.id = looks_person.look AND looks_person.person = people.id ';
+      detailQuery += 'ORDER BY looks.show_order ASC';
+
+   return lookQuery;
+};
+
+// ---------------------------------------------- do the query to get looks data
+
+var getData = function(data_query) {
+   var deferred = q.defer();
    var clientQueryDone = null;
 
    // ------------------------------------- client query is finished
@@ -69,18 +81,28 @@ var getLooksData = function(){
 
    var pgConnected = function(err, client, done) {
       clientQueryDone = done;
-      client.query(looksQuery, queryDone);
+      client.query(data_query, queryDone);
    };
 
    pg.connect(process.env.DATABASE_URL, pgConnected);
 
    return deferred.promise;
-}
+};
+
+
+// ---------------------------------------------- return looks data
+
+exports.getLook = function(request, response) {
+   getData(getDetailQuery()).then(function(data){
+      response.send(data);
+   });
+};
+
 
 // ---------------------------------------------- return looks data
 
 exports.getLooks = function(request, response) {
-   getLooksData().then(function(data){
+   getData(getLooksQuery()).then(function(data){
       response.send(data);
    });
 };
@@ -89,13 +111,19 @@ exports.getLooks = function(request, response) {
 
 exports.renderLooks = function(request, response) {
    // response.render('pages/index', { looks: fakeData });
-   getLooksData().then(function(data){
+   getData(getLooksQuery()).then(function(data){
       response.render('pages/index', { looks: data });
    });
-}
+};
 
 // ---------------------------------------------- render login
 
 exports.renderLogin = function(request, response) {
    response.render('pages/login');
-}
+};
+
+// ---------------------------------------------- render detail page
+
+exports.renderLogin = function(request, response) {
+   response.render('pages/detail');
+};
