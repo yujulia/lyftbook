@@ -24,7 +24,7 @@ var getDetailQuery = function(id) {
    var detailQuery = 'SELECT looks.show, looks.id, looks.image, looks.title, looks.info, people.nickname '
       detailQuery += 'FROM looks, looks_person, people ';
       detailQuery += 'WHERE looks.id='+id+' ';
-      detailQuery += 'looks.id = looks_person.look AND looks_person.person = people.id ';
+      detailQuery += 'AND looks.id = looks_person.look AND looks_person.person = people.id ';
       detailQuery += 'ORDER BY looks.show_order ASC';
 
    return detailQuery;
