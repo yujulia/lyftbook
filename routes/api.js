@@ -7,6 +7,11 @@ var monthNames = ["January", "February", "March", "April", "May", "June",
 // --- test data for local heroku
 var fakeData = require('../fixtures/looks.json');
 
+// TODO ----------------------------------------------
+//
+// move api endpoints to one module and routes to another, make shared functions into its own module
+
+
 // ---------------------------------------------- do the query to get looks data
 
 var getLooksData = function(){
