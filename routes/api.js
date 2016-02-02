@@ -89,15 +89,13 @@ var getData = function(data_query) {
    return deferred.promise;
 };
 
-
 // ---------------------------------------------- return looks data
 
 exports.getLook = function(request, response) {
-   getData(getDetailQuery()).then(function(data){
+   getData(getDetailQuery(request.params.id)).then(function(data){
       response.send(data);
    });
 };
-
 
 // ---------------------------------------------- return looks data
 

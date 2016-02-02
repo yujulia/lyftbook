@@ -21,3 +21,4 @@ app.get('/', api.renderLooks);
 app.get('/login', api.renderLogin);
 
 app.get('/api/looks', api.getLooks);
+app.get('/api/look/:id', api.getLook);
